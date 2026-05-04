@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="meta_title">PIUNIKS — From idea to working product, in days</title>
+<meta name="description" data-i18n="meta_description" content="Websites, AI integrations, CRM systems, and custom software. Modern tooling and agile workflows accelerating digital transformation." />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="alternate" hreflang="en" href="https://www.piuniks.com/" />
+<link rel="alternate" hreflang="tr" href="https://www.piuniks.com/?lang=tr" />
+<link rel="alternate" hreflang="x-default" href="https://www.piuniks.com/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.piuniks.com/" />
+<meta property="og:title" data-i18n-attr="og:title" content="PIUNIKS — From idea to working product, in days" />
+<meta property="og:description" data-i18n-attr="og:description" content="Web, AI, CRM, and custom software. Fast digital transformation through agile workflows." />
+<meta property="og:image" content="https://www.piuniks.com/logo.svg" />
+
+<link rel="icon" type="image/svg+xml" href="logo.svg" />
+<link rel="apple-touch-icon" href="logo.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --text: #f5f1e8;
+    --text-dim: #8a8578;
+    --border: #1f1f1f;
+    --border-2: #2a2a2a;
+    --lime: #d4ff3a;
+    --warm: #ff6b35;
+    --display: 'Fraunces', Georgia, serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.55;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(rgba(212,255,58,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,255,58,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-attachment: fixed;
+  }
+
+  .ambient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 90% 0%, rgba(212,255,58,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 0% 100%, rgba(255,107,53,0.06), transparent 60%);
+  }
+
+  .noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  ::selection { background: var(--lime); color: #0a0a0a; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ---------- NAV ---------- */
+  nav.topnav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: #000;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    gap: 32px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-size: 15px;
+  }
+  .brand-logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+    margin: -10px 0;
+  }
+  .brand:hover .brand-logo {
+    transform: rotate(-3deg) scale(1.06);
+  }
+  .brand-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 10px var(--lime);
+    animation: pulse 2s ease-in-out infinite;
+    margin-left: 2px;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.85); }
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .nav-links a {
+    transition: color 0.2s ease;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border-2);
+    border-radius: 999px;
+    padding: 4px;
+    font-family: var(--mono);
+    font-size: 12px;
+    background: rgba(255,255,255,0.02);
+  }
+  .lang-toggle button {
+    background: none;
+    border: 0;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: inherit;
+    padding: 4px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.18s ease;
+  }
+  .lang-toggle button.active {
+    background: var(--lime);
+    color: #0a0a0a;
+    font-weight: 600;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: 4px;
+    border: 1px solid var(--lime);
+    color: var(--lime);
+    background: transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--lime);
+    background: var(--lime);
+    color: #0a0a0a;
+  }
+  .btn-primary {
+    background: var(--lime);
+    color: #0a0a0a;
+    font-weight: 600;
+    padding: 14px 22px;
+    font-size: 14px;
+  }
+  .btn-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--lime);
+    background: var(--lime);
+    color: #0a0a0a;
+  }
+  .btn-ghost {
+    border: 1px solid var(--border-2);
+    color: var(--text);
+    padding: 14px 22px;
+    font-size: 14px;
+  }
+  .btn-ghost:hover {
+    background: transparent;
+    color: var(--lime);
+    border-color: var(--lime);
+    box-shadow: 4px 4px 0 var(--lime);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding-top: 160px;
+    padding-bottom: 120px;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 14px;
+    border: 1px solid var(--border-2);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--text-dim);
+    background: rgba(255,255,255,0.02);
+    margin-bottom: 36px;
+  }
+  .pill::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 8px var(--lime);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  h1.headline {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+    color: var(--text);
+  }
+  h1.headline em,
+  h2 em, h3 em {
+    font-style: italic;
+    color: var(--lime);
+    font-weight: 500;
+  }
+  .strike {
+    position: relative;
+    display: inline-block;
+    color: var(--text-dim);
+  }
+  .strike::after {
+    content: '';
+    position: absolute;
+    left: -4%;
+    right: -4%;
+    top: 52%;
+    height: 4px;
+    background: var(--warm);
+    transform: rotate(-2deg);
+    border-radius: 2px;
+  }
+
+  .subhead {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- TERMINAL ---------- */
+  .terminal {
+    background: #0d0d0d;
+    border: 1px solid var(--border-2);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 13px;
+    box-shadow:
+      0 30px 80px -20px rgba(0,0,0,0.6),
+      0 0 60px -20px rgba(212,255,58,0.15);
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    background: #161616;
+    border-bottom: 1px solid var(--border-2);
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+  .terminal-title {
+    margin-left: 12px;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+  .terminal-body {
+    padding: 22px 22px 26px;
+    line-height: 1.7;
+    min-height: 320px;
+    color: var(--text);
+  }
+  .term-line { display: block; opacity: 0; transform: translateY(4px); }
+  .term-line.show { opacity: 1; transform: none; transition: all 0.3s ease; }
+  .prompt { color: var(--lime); }
+  .muted { color: var(--text-dim); }
+  .accent { color: var(--lime); }
+  .warm { color: var(--warm); }
+  .cursor {
+    display: inline-block;
+    width: 9px;
+    height: 16px;
+    background: var(--lime);
+    vertical-align: -3px;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    box-shadow: 0 0 8px var(--lime);
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 0;
+    overflow: hidden;
+    background: rgba(255,255,255,0.01);
+    position: relative;
+    z-index: 2;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 56px;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 56px;
+  }
+  .marquee-item .star { color: var(--lime); font-style: normal; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section { position: relative; z-index: 2; }
+  .section { padding: 120px 0; }
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .section-num::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--lime);
+  }
+  .section-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    margin-bottom: 20px;
+  }
+  .section-sub {
+    color: var(--text-dim);
+    font-size: 15px;
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+
+  /* ---------- SERVICES GRID ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--surface);
+    padding: 36px 32px 32px;
+    position: relative;
+    transition: background 0.25s ease;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card.full { grid-column: 1 / -1; }
+  .service-card:hover { background: #181818; }
+  .service-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    margin-bottom: 28px;
+  }
+  .service-arrow {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    font-size: 22px;
+    color: var(--text-dim);
+    transition: transform 0.3s ease, color 0.3s ease;
+    line-height: 1;
+  }
+  .service-card:hover .service-arrow {
+    color: var(--lime);
+    transform: translate(4px, -4px);
+  }
+  .service-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .service-desc {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 22px;
+    max-width: 56ch;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 5px 10px;
+    border: 1px solid var(--border-2);
+    border-radius: 999px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- APPROACH ---------- */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .approach-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 100px 1fr 130px;
+    gap: 28px;
+    align-items: baseline;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    transition: transform 0.3s ease;
+  }
+  .step:last-child { border-bottom: 1px solid var(--border); }
+  .step:hover { transform: translateX(16px); }
+  .step-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--lime);
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .step-content h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .step-content p {
+    color: var(--text-dim);
+    font-size: 14px;
+    max-width: 52ch;
+  }
+  .step-time {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    text-align: right;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(56px, 7vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+  }
+  .stat-num .accent { color: var(--lime); }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- CTA BLOCK ---------- */
+  .cta-block {
+    text-align: center;
+    padding: 160px 0;
+    position: relative;
+  }
+  .cta-headline {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 48px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-buttons {
+    display: inline-flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 80px 0 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 56px;
+    margin-bottom: 64px;
+  }
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a, .footer-col li { font-size: 13px; color: var(--text); transition: color 0.2s ease; }
+  .footer-col a:hover { color: var(--lime); }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: -0.02em;
+  }
+  .footer-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: -16px 0;
+  }
+  .footer-tagline {
+    color: var(--text-dim);
+    font-size: 13px;
+    max-width: 36ch;
+    line-height: 1.6;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    will-change: opacity, transform;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  [data-i18n], [data-i18n-html] {
+    transition: opacity 0.15s ease;
+  }
+  body.lang-swapping [data-i18n],
+  body.lang-swapping [data-i18n-html] { opacity: 0; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 968px) {
+    .container { padding: 0 22px; }
+    .nav-links { display: none; }
+    .nav-inner { gap: 12px; }
+    .hero { padding-top: 130px; padding-bottom: 80px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .terminal-body { min-height: 280px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card.full { grid-column: 1; }
+    .approach-grid { grid-template-columns: 1fr; gap: 40px; }
+    .step { grid-template-columns: 70px 1fr; }
+    .step-time { grid-column: 2; text-align: left; margin-top: 8px; }
+    .stats { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .section { padding: 80px 0; }
+    .cta-block { padding: 100px 0; }
+  }
+
+  @media (max-width: 540px) {
+    .nav-inner { height: 60px; }
+    .brand { font-size: 14px; }
+    .lang-toggle { padding: 3px; }
+    .lang-toggle button { padding: 3px 8px; font-size: 11px; }
+    .btn-primary, .btn-ghost { padding: 12px 16px; font-size: 13px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+  <div class="ambient"></div>
+  <div class="noise"></div>
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="piuniks">
+        <img src="logo.svg" alt="" class="brand-logo" />
+        <span>piuniks</span>
+        <span class="brand-dot" aria-hidden="true"></span>
+      </a>
+      <div class="nav-links">
+        <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#approach" data-i18n="nav_process">Process</a>
+        <a href="#stats" data-i18n="nav_results">Results</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </div>
+      <div class="nav-right">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button data-lang="tr" type="button">TR</button>
+          <button data-lang="en" class="active" type="button">EN</button>
+        </div>
+        <a href="#contact" class="btn" data-i18n="nav_cta">Start Project →</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="pill" data-i18n="hero_pill">Open for new projects · 2026</span>
+          <h1 class="headline" data-i18n-html="hero_headline">
+            From idea to <em>working</em> product. <span class="strike">Months</span> not <em>days</em>.
+          </h1>
+          <p class="subhead" data-i18n="hero_subhead">Websites, AI integrations, CRM systems, and custom software solutions. Modern tooling and agile workflows accelerating digital transformation — from SMBs to enterprise.</p>
+          <div class="hero-ctas">
+            <a href="mailto:hello@piuniks.com" class="btn btn-primary" data-i18n="hero_cta_primary">Free Consultation →</a>
+            <a href="#services" class="btn btn-ghost" data-i18n="hero_cta_ghost">View Services</a>
+          </div>
+        </div>
+
+        <div class="terminal" aria-hidden="true">
+          <div class="terminal-bar">
+            <span class="dot r"></span>
+            <span class="dot y"></span>
+            <span class="dot g"></span>
+            <span class="terminal-title">~/piuniks — zsh</span>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <span class="term-line"><span class="prompt">$</span> whoami</span>
+            <span class="term-line"><span class="accent">piuniks</span> <span class="muted">// developer · ai consultant · builder</span></span>
+            <span class="term-line">&nbsp;</span>
+            <span class="term-line"><span class="prompt">$</span> cat stack.json</span>
+            <span class="term-line"><span class="muted">{</span></span>
+            <span class="term-line">&nbsp;&nbsp;<span class="accent">"web"</span><span class="muted">:</span> <span class="warm">["next.js", "react", "tailwind"]</span><span class="muted">,</span></span>
+            <span class="term-line">&nbsp;&nbsp;<span class="accent">"ai"</span><span class="muted">:</span> <span class="warm">["claude", "openai", "rag", "agents"]</span><span class="muted">,</span></span>
+            <span class="term-line">&nbsp;&nbsp;<span class="accent">"backend"</span><span class="muted">:</span> <span class="warm">["node", "python", "postgres"]</span></span>
+            <span class="term-line"><span class="muted">}</span></span>
+            <span class="term-line">&nbsp;</span>
+            <span class="term-line"><span class="prompt">$</span> ./build --idea-to-product</span>
+            <span class="term-line"><span class="muted">› shipping in</span> <span class="accent">days</span><span class="muted">, not months_</span><span class="cursor"></span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marquee-track">
+        <!-- duplicated by JS -->
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-num" data-i18n="services_num">[ 01 ] SERVICES</span>
+          <h2 class="section-title" data-i18n-html="services_title">What we <em>build</em>.</h2>
+          <p class="section-sub" data-i18n="services_sub">From shipping new products to modernizing legacy systems — end-to-end technical partnership.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <span class="service-num">01</span>
+            <span class="service-arrow">↗</span>
+            <h3 class="service-title" data-i18n="svc1_title">Web Development</h3>
+            <p class="service-desc" data-i18n="svc1_desc">Fast, modern, SEO-friendly websites. From marketing sites to complex SaaS dashboards — design and engineering centered on performance and conversion.</p>
+            <div class="tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">React</span>
+              <span class="tag">Tailwind</span>
+              <span class="tag">SEO</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-num">02</span>
+            <span class="service-arrow">↗</span>
+            <h3 class="service-title" data-i18n="svc2_title">AI Solutions</h3>
+            <p class="service-desc" data-i18n="svc2_desc">LLM-powered assistants, RAG systems, and custom AI agents. Production AI integrated into real workflows that creates measurable value — not demos.</p>
+            <div class="tags">
+              <span class="tag">Claude</span>
+              <span class="tag">OpenAI</span>
+              <span class="tag">RAG</span>
+              <span class="tag">Agents</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-num">03</span>
+            <span class="service-arrow">↗</span>
+            <h3 class="service-title" data-i18n="svc3_title">CRM Technologies</h3>
+            <p class="service-desc" data-i18n="svc3_desc">Salesforce, HubSpot, and custom CRM builds. Integrations, automations, and reporting that turn customer data into outcomes — systems your sales team will actually use.</p>
+            <div class="tags">
+              <span class="tag">Salesforce</span>
+              <span class="tag">HubSpot</span>
+              <span class="tag">API</span>
+              <span class="tag">Automation</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-num">04</span>
+            <span class="service-arrow">↗</span>
+            <h3 class="service-title" data-i18n="svc4_title">Workflow Management</h3>
+            <p class="service-desc" data-i18n="svc4_desc">Systems that automate manual, repetitive work. n8n, Zapier, and custom pipelines that free your team to focus on what actually matters.</p>
+            <div class="tags">
+              <span class="tag">n8n</span>
+              <span class="tag">Zapier</span>
+              <span class="tag">Make</span>
+              <span class="tag">Webhooks</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-num">05</span>
+            <span class="service-arrow">↗</span>
+            <h3 class="service-title" data-i18n="svc5_title">Agile · Scrum Development</h3>
+            <p class="service-desc" data-i18n="svc5_desc">Two-week sprints, transparent communication, continuous delivery. Building the right product in small steps — working code over giant planning meetings.</p>
+            <div class="tags">
+              <span class="tag">Scrum</span>
+              <span class="tag">Sprints</span>
+              <span class="tag">Linear</span>
+              <span class="tag">CI/CD</span>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-num">06</span>
+            <span class="service-arrow">↗</span>
+            <h3 class="service-title" data-i18n="svc6_title">Custom Software Solutions</h3>
+            <p class="service-desc" data-i18n="svc6_desc">When off-the-shelf tools fall short — internal tools and B2B platforms built from scratch. Data model to API, dashboard to mobile, delivered end-to-end.</p>
+            <div class="tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">Python</span>
+              <span class="tag">Postgres</span>
+              <span class="tag">Cloud</span>
+            </div>
+          </article>
+
+          <article class="service-card full reveal">
+            <span class="service-num">07</span>
+            <span class="service-arrow">↗</span>
+            <h3 class="service-title" data-i18n="svc7_title">Technology Consulting</h3>
+            <p class="service-desc" data-i18n="svc7_desc">The right stack, the right architecture, at the right time. Pragmatic advice on technical roadmaps, team structure, and build-vs-buy — drawn from years of production experience.</p>
+            <div class="tags">
+              <span class="tag">Architecture</span>
+              <span class="tag">Strategy</span>
+              <span class="tag">Code Review</span>
+              <span class="tag">Hiring</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="section" id="approach">
+      <div class="container approach-grid">
+        <div class="reveal">
+          <span class="section-num" data-i18n="approach_num">[ 02 ] PROCESS</span>
+          <h2 class="section-title" data-i18n-html="approach_title">How we <em>work?</em></h2>
+          <p class="section-sub" data-i18n="approach_sub">Transparent, measurable, and incremental. Something working at the end of every sprint — in real users' hands, not on paper.</p>
+        </div>
+
+        <div class="approach-steps">
+          <div class="step reveal">
+            <span class="step-num">01</span>
+            <div class="step-content">
+              <h3 data-i18n="step1_title">Discovery & Strategy</h3>
+              <p data-i18n="step1_desc">We map your goals, your users, and your technical constraints. Output: a clear scope and a prioritized roadmap.</p>
+            </div>
+            <span class="step-time" data-i18n="step1_time">3-5 days</span>
+          </div>
+
+          <div class="step reveal">
+            <span class="step-num">02</span>
+            <div class="step-content">
+              <h3 data-i18n="step2_title">Architecture & Design</h3>
+              <p data-i18n="step2_desc">Data model, API surface, and interface flows. A solid plan before construction — the way to avoid costly fixes later.</p>
+            </div>
+            <span class="step-time" data-i18n="step2_time">1 week</span>
+          </div>
+
+          <div class="step reveal">
+            <span class="step-num">03</span>
+            <div class="step-content">
+              <h3 data-i18n="step3_title">Sprint Development</h3>
+              <p data-i18n="step3_desc">Working pieces shipped in two-week sprints. Demos, feedback, and re-prioritization at the end of every cycle.</p>
+            </div>
+            <span class="step-time" data-i18n="step3_time">2-8 weeks</span>
+          </div>
+
+          <div class="step reveal">
+            <span class="step-num">04</span>
+            <div class="step-content">
+              <h3 data-i18n="step4_title">Test & Deploy</h3>
+              <p data-i18n="step4_desc">Automated tests, a staging environment, and a controlled production rollout. A CI/CD pipeline keeps every future release safe and fast.</p>
+            </div>
+            <span class="step-time" data-i18n="step4_time">1 week</span>
+          </div>
+
+          <div class="step reveal">
+            <span class="step-num">05</span>
+            <div class="step-content">
+              <h3 data-i18n="step5_title">Maintenance & Growth</h3>
+              <p data-i18n="step5_desc">Launch is the start, not the finish. Performance monitoring, user feedback, and iterative improvements — because products need to live.</p>
+            </div>
+            <span class="step-time" data-i18n="step5_time">Ongoing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section" id="stats" style="padding-top: 0;">
+      <div class="container">
+        <div class="stats reveal">
+          <div>
+            <div class="stat-num"><span class="accent">10×</span></div>
+            <div class="stat-label" data-i18n="stat1_label">Faster Development</div>
+          </div>
+          <div>
+            <div class="stat-num"><span class="accent">∞</span></div>
+            <div class="stat-label" data-i18n="stat2_label">Solution Variety</div>
+          </div>
+          <div>
+            <div class="stat-num" data-i18n-html="stat3_num">7<span class="accent">d</span></div>
+            <div class="stat-label" data-i18n="stat3_label">Average MVP Time</div>
+          </div>
+          <div>
+            <div class="stat-num">1<span class="accent">:</span>1</div>
+            <div class="stat-label" data-i18n="stat4_label">Direct Communication</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-block" id="contact">
+      <div class="container reveal">
+        <h2 class="cta-headline" data-i18n-html="cta_headline">Got an <em>idea</em>? Let's make it <em>real</em>.</h2>
+        <div class="cta-buttons">
+          <a href="mailto:hello@piuniks.com" class="btn btn-primary">hello@piuniks.com →</a>
+          <a href="mailto:hello@piuniks.com?subject=30%20min%20call" class="btn btn-ghost" data-i18n="cta_call">Free 30 min Call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <img src="logo.svg" alt="piuniks logo" class="footer-logo" />
+            <span>piuniks<span style="color:var(--lime)">.</span></span>
+          </div>
+          <p class="footer-tagline" data-i18n="footer_tagline">From idea to working product. Technical partnership for the AI era — from SMBs to enterprise.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_services_title">Services</h4>
+          <ul>
+            <li><a href="#services" data-i18n="footer_svc1">Web Development</a></li>
+            <li><a href="#services" data-i18n="footer_svc2">AI Solutions</a></li>
+            <li><a href="#services" data-i18n="footer_svc3">CRM Systems</a></li>
+            <li><a href="#services" data-i18n="footer_svc4">Custom Software</a></li>
+            <li><a href="#services" data-i18n="footer_svc5">Consulting</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_contact_title">Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@piuniks.com">hello@piuniks.com</a></li>
+            <li><a href="https://www.piuniks.com" target="_blank" rel="noopener">www.piuniks.com</a></li>
+            <li><a href="https://www.linkedin.com/in/piuniks" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href="https://github.com/piuniks" target="_blank" rel="noopener">GitHub ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer_copy">© 2026 PIUNIKS · All rights reserved</span>
+        <span>Made by <span style="color:var(--lime)">piuniks</span></span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // ---------- TRANSLATIONS ----------
+  const translations = {
+    tr: {
+      meta_title: "PIUNIKS — Fikirden çalışan ürüne, günler içinde",
+      meta_description: "Web siteleri, AI entegrasyonları, CRM sistemleri ve özel yazılım çözümleri. Modern araçlar ve agile süreçlerle dijital dönüşümü hızlandırıyorum.",
+      "og:title": "PIUNIKS — Fikirden çalışan ürüne, günler içinde",
+      "og:description": "Web, AI, CRM ve özel yazılım. Agile süreçlerle hızlı dijital dönüşüm.",
+
+      nav_services: "Hizmetler",
+      nav_process: "Süreç",
+      nav_results: "Sonuçlar",
+      nav_contact: "İletişim",
+      nav_cta: "Proje Başlat →",
+
+      hero_pill: "Yeni projeye açığız · 2026",
+      hero_headline: 'Fikirden <em>çalışan</em> ürüne. <span class="strike">Aylar</span> değil <em>günler</em>.',
+      hero_subhead: "Web siteleri, AI entegrasyonları, CRM sistemleri ve özel yazılım çözümleri. Modern araçlar ve agile süreçlerle, KOBİ'lerden enterprise'a kadar dijital dönüşümü hızlandırıyorum.",
+      hero_cta_primary: "Ücretsiz Görüşme →",
+      hero_cta_ghost: "Hizmetleri Gör",
+
+      services_num: "[ 01 ] HİZMETLER",
+      services_title: 'Sunduğumuz <em>çözümler</em>.',
+      services_sub: "Sıfırdan ürün geliştirmeden mevcut sistemlerin modernizasyonuna kadar — uçtan uca teknik partnerlik.",
+
+      svc1_title: "Web Geliştirme",
+      svc1_desc: "Modern, hızlı ve SEO dostu web siteleri. Pazarlama sitelerinden karmaşık SaaS panellerine — performansı ve dönüşümü merkeze alan tasarım ve geliştirme.",
+      svc2_title: "Yapay Zeka Çözümleri",
+      svc2_desc: "LLM tabanlı asistanlar, RAG sistemleri ve özel AI ajanları. Mevcut iş akışlarınıza entegre edilmiş, gerçek değer üreten yapay zeka — demo değil, üretim.",
+      svc3_title: "CRM Teknolojileri",
+      svc3_desc: "Salesforce, HubSpot ve özel CRM çözümleri. Müşteri verisini değere çeviren entegrasyonlar, otomasyonlar ve raporlama — satış ekibinin gerçekten kullandığı sistemler.",
+      svc4_title: "İş Akışı Yönetimi",
+      svc4_desc: "Manuel ve tekrarlayan işleri otomatikleştiren sistemler. n8n, Zapier ve özel pipeline'lar ile ekibinizin zamanını gerçek işe ayırmasını sağlar.",
+      svc5_title: "Agile · Scrum Geliştirme",
+      svc5_desc: "İki haftalık sprintler, şeffaf iletişim, sürekli teslim. Küçük adımlarla doğru ürünü inşa eden — büyük plan toplantıları yerine çalışan kod üreten süreç.",
+      svc6_title: "Özel Yazılım Çözümleri",
+      svc6_desc: "Hazır araçların yetmediği yerde, sıfırdan tasarlanmış iç araçlar ve B2B platformlar. Veri modelinden API'ye, panelden mobil deneyime kadar tek elden teslim.",
+      svc7_title: "Teknoloji Danışmanlığı",
+      svc7_desc: "Doğru stack, doğru mimari, doğru zaman. Teknik yol haritası, takım yapısı ve build vs. buy kararlarında — yıllarca üretim deneyiminden gelen pragmatik tavsiye.",
+
+      approach_num: "[ 02 ] SÜREÇ",
+      approach_title: 'Nasıl <em>çalışıyoruz?</em>',
+      approach_sub: "Şeffaf, ölçülebilir ve adım adım. Her sprintin sonunda çalışan bir şey — kâğıt üzerinde değil, gerçek kullanıcıların elinde.",
+
+      step1_title: "Keşif & Strateji",
+      step1_desc: "Hedeflerinizi, kullanıcılarınızı ve teknik kısıtları haritalandırırız. Çıktı: net bir kapsam ve önceliklendirilmiş yol haritası.",
+      step1_time: "3-5 gün",
+      step2_title: "Mimari & Tasarım",
+      step2_desc: "Veri modeli, API yüzeyi ve arayüz akışları. İnşaat başlamadan önce sağlam bir plan, sonradan pahalı düzeltmelerden kaçınmanın yolu.",
+      step2_time: "1 hafta",
+      step3_title: "Sprint Geliştirme",
+      step3_desc: "İki haftalık sprintlerde çalışan parçalar. Her sprint sonunda demo, geri bildirim ve önceliklerin yeniden gözden geçirilmesi.",
+      step3_time: "2-8 hafta",
+      step4_title: "Test & Deploy",
+      step4_desc: "Otomatik testler, staging ortamı ve canlıya kontrollü çıkış. CI/CD pipeline'ı, sonraki güncellemeleri de güvenli ve hızlı tutar.",
+      step4_time: "1 hafta",
+      step5_title: "Bakım & Büyütme",
+      step5_desc: "Lansman bitiş değil başlangıç. Performans izleme, kullanıcı geri bildirimi ve iteratif iyileştirme — ürün hayatını yaşamak için.",
+      step5_time: "Sürekli",
+
+      stat1_label: "Daha Hızlı Geliştirme",
+      stat2_label: "Çözüm Çeşitliliği",
+      stat3_num: '7<span class="accent">g</span>',
+      stat3_label: "Ortalama MVP Süresi",
+      stat4_label: "Direkt İletişim",
+
+      cta_headline: 'Bir <em>fikrin</em> var mı? Onu <em>gerçek</em> yapalım.',
+      cta_call: "Ücretsiz 30 dk Görüşme",
+
+      footer_tagline: "Fikirden çalışan ürüne. AI çağında, KOBİ'den enterprise'a teknik partnerlik.",
+      footer_services_title: "Hizmetler",
+      footer_svc1: "Web Geliştirme",
+      footer_svc2: "AI Çözümleri",
+      footer_svc3: "CRM Sistemleri",
+      footer_svc4: "Özel Yazılım",
+      footer_svc5: "Danışmanlık",
+      footer_contact_title: "İletişim",
+      footer_copy: "© 2026 PIUNIKS · Tüm hakları saklıdır"
+    },
+    en: {
+      meta_title: "PIUNIKS — From idea to working product, in days",
+      meta_description: "Websites, AI integrations, CRM systems, and custom software. Modern tooling and agile workflows accelerating digital transformation.",
+      "og:title": "PIUNIKS — From idea to working product, in days",
+      "og:description": "Web, AI, CRM, and custom software. Fast digital transformation through agile workflows.",
+
+      nav_services: "Services",
+      nav_process: "Process",
+      nav_results: "Results",
+      nav_contact: "Contact",
+      nav_cta: "Start Project →",
+
+      hero_pill: "Open for new projects · 2026",
+      hero_headline: 'From idea to <em>working</em> product. <span class="strike">Months</span> not <em>days</em>.',
+      hero_subhead: "Websites, AI integrations, CRM systems, and custom software solutions. Modern tooling and agile workflows accelerating digital transformation — from SMBs to enterprise.",
+      hero_cta_primary: "Free Consultation →",
+      hero_cta_ghost: "View Services",
+
+      services_num: "[ 01 ] SERVICES",
+      services_title: 'What we <em>build</em>.',
+      services_sub: "From shipping new products to modernizing legacy systems — end-to-end technical partnership.",
+
+      svc1_title: "Web Development",
+      svc1_desc: "Fast, modern, SEO-friendly websites. From marketing sites to complex SaaS dashboards — design and engineering centered on performance and conversion.",
+      svc2_title: "AI Solutions",
+      svc2_desc: "LLM-powered assistants, RAG systems, and custom AI agents. Production AI integrated into real workflows that creates measurable value — not demos.",
+      svc3_title: "CRM Technologies",
+      svc3_desc: "Salesforce, HubSpot, and custom CRM builds. Integrations, automations, and reporting that turn customer data into outcomes — systems your sales team will actually use.",
+      svc4_title: "Workflow Management",
+      svc4_desc: "Systems that automate manual, repetitive work. n8n, Zapier, and custom pipelines that free your team to focus on what actually matters.",
+      svc5_title: "Agile · Scrum Development",
+      svc5_desc: "Two-week sprints, transparent communication, continuous delivery. Building the right product in small steps — working code over giant planning meetings.",
+      svc6_title: "Custom Software Solutions",
+      svc6_desc: "When off-the-shelf tools fall short — internal tools and B2B platforms built from scratch. Data model to API, dashboard to mobile, delivered end-to-end.",
+      svc7_title: "Technology Consulting",
+      svc7_desc: "The right stack, the right architecture, at the right time. Pragmatic advice on technical roadmaps, team structure, and build-vs-buy — drawn from years of production experience.",
+
+      approach_num: "[ 02 ] PROCESS",
+      approach_title: 'How we <em>work?</em>',
+      approach_sub: "Transparent, measurable, and incremental. Something working at the end of every sprint — in real users' hands, not on paper.",
+
+      step1_title: "Discovery & Strategy",
+      step1_desc: "We map your goals, your users, and your technical constraints. Output: a clear scope and a prioritized roadmap.",
+      step1_time: "3-5 days",
+      step2_title: "Architecture & Design",
+      step2_desc: "Data model, API surface, and interface flows. A solid plan before construction — the way to avoid costly fixes later.",
+      step2_time: "1 week",
+      step3_title: "Sprint Development",
+      step3_desc: "Working pieces shipped in two-week sprints. Demos, feedback, and re-prioritization at the end of every cycle.",
+      step3_time: "2-8 weeks",
+      step4_title: "Test & Deploy",
+      step4_desc: "Automated tests, a staging environment, and a controlled production rollout. A CI/CD pipeline keeps every future release safe and fast.",
+      step4_time: "1 week",
+      step5_title: "Maintenance & Growth",
+      step5_desc: "Launch is the start, not the finish. Performance monitoring, user feedback, and iterative improvements — because products need to live.",
+      step5_time: "Ongoing",
+
+      stat1_label: "Faster Development",
+      stat2_label: "Solution Variety",
+      stat3_num: '7<span class="accent">d</span>',
+      stat3_label: "Average MVP Time",
+      stat4_label: "Direct Communication",
+
+      cta_headline: 'Got an <em>idea</em>? Let\'s make it <em>real</em>.',
+      cta_call: "Free 30 min Call",
+
+      footer_tagline: "From idea to working product. Technical partnership for the AI era — from SMBs to enterprise.",
+      footer_services_title: "Services",
+      footer_svc1: "Web Development",
+      footer_svc2: "AI Solutions",
+      footer_svc3: "CRM Systems",
+      footer_svc4: "Custom Software",
+      footer_svc5: "Consulting",
+      footer_contact_title: "Contact",
+      footer_copy: "© 2026 PIUNIKS · All rights reserved"
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+
+    document.body.classList.add('lang-swapping');
+
+    setTimeout(() => {
+      const dict = translations[lang];
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] != null) el.textContent = dict[key];
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+        const key = el.getAttribute('data-i18n-attr');
+        if (dict[key] != null) el.setAttribute('content', dict[key]);
+      });
+
+      if (dict.meta_title) document.title = dict.meta_title;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && dict.meta_description) metaDesc.setAttribute('content', dict.meta_description);
+
+      document.querySelectorAll('.lang-toggle button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      document.body.classList.remove('lang-swapping');
+    }, 150);
+  }
+
+  document.querySelectorAll('.lang-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
+  // ---------- MARQUEE ----------
+  (function buildMarquee() {
+    const items = [
+      'Web Development',
+      'AI Integration',
+      'CRM Systems',
+      'Workflow Automation',
+      'Agile · Scrum',
+      'Custom Software',
+      'Consulting'
+    ];
+    const track = document.getElementById('marquee-track');
+    const buildSet = () => items.map(t =>
+      `<span class="marquee-item">${t} <span class="star">✦</span></span>`
+    ).join('');
+    track.innerHTML = buildSet() + buildSet();
+  })();
+
+  // ---------- TERMINAL ----------
+  (function animateTerminal() {
+    const lines = document.querySelectorAll('#terminal-body .term-line');
+    lines.forEach((line, i) => {
+      setTimeout(() => line.classList.add('show'), 350 + i * 220);
+    });
+  })();
+
+  // ---------- REVEAL ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const delay = parseInt(target.dataset.delay || '0', 10);
+        setTimeout(() => target.classList.add('visible'), delay);
+        io.unobserve(target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.dataset.delay = (i % 8) * 50;
+    io.observe(el);
+  });
+
+  // ---------- SMOOTH ANCHOR (with offset for fixed nav) ----------
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 60;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
