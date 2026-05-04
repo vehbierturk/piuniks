@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" width="800" height="720">
+  <defs>
+    <!-- Silver gradient for main body and wings -->
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5f7fa"/>
+      <stop offset="40%" stop-color="#c8cdd4"/>
+      <stop offset="70%" stop-color="#8a9099"/>
+      <stop offset="100%" stop-color="#4a5058"/>
+    </linearGradient>
+
+    <linearGradient id="silverGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9aa1ab"/>
+      <stop offset="50%" stop-color="#5c626c"/>
+      <stop offset="100%" stop-color="#2a2e35"/>
+    </linearGradient>
+
+    <linearGradient id="silverEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#7a8088"/>
+    </linearGradient>
+
+    <!-- Blue glow gradient -->
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7ed4ff"/>
+      <stop offset="50%" stop-color="#1f8fff"/>
+      <stop offset="100%" stop-color="#0050d4"/>
+    </linearGradient>
+
+    <radialGradient id="blueCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#9ee0ff"/>
+      <stop offset="70%" stop-color="#1e90ff"/>
+      <stop offset="100%" stop-color="#003a99"/>
+    </radialGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+
+  <!-- Black background -->
+  <rect width="800" height="720" fill="#000000"/>
+
+  <!-- ============ LEFT WING ============ -->
+  <g id="leftWing">
+    <!-- Blue glow base behind left wing -->
+    <path d="M 400 280 L 250 200 L 120 180 L 60 220 L 140 240 L 80 280 L 180 290 L 110 330 L 220 330 L 160 380 L 280 360 L 240 410 L 340 380 L 380 360 Z"
+          fill="#1e90ff" opacity="0.55" filter="url(#softGlow)"/>
+
+    <!-- Outer feathers (top row) -->
+    <path d="M 400 270 L 240 195 L 95 175 L 175 230 L 250 250 L 395 285 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+    <path d="M 395 285 L 175 230 L 75 270 L 200 285 L 395 305 Z"
+          fill="url(#silverGradDark)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Middle feathers -->
+    <path d="M 395 305 L 200 285 L 110 325 L 230 330 L 395 335 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+    <path d="M 395 335 L 230 330 L 165 380 L 280 360 L 395 360 Z"
+          fill="url(#silverGradDark)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Lower feathers with blue accent -->
+    <path d="M 395 360 L 280 360 L 235 410 L 335 380 L 395 385 Z"
+          fill="url(#blueGlow)" stroke="#0050d4" stroke-width="1" filter="url(#glow)"/>
+    <path d="M 395 385 L 335 380 L 305 430 L 380 410 L 395 400 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Top crest feather (highest tip) -->
+    <path d="M 395 270 L 320 130 L 290 165 L 315 240 L 395 280 Z"
+          fill="url(#silverEdge)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Blue energy line along leading edge -->
+    <path d="M 320 135 L 305 200 L 290 270 L 280 340 L 295 400"
+          stroke="#5cc8ff" stroke-width="3" fill="none" opacity="0.9" filter="url(#glow)"/>
+
+    <!-- Blue accent strip lower wing -->
+    <path d="M 280 350 L 320 380 L 290 420 L 250 400 Z"
+          fill="url(#blueCore)" filter="url(#glow)"/>
+  </g>
+
+  <!-- ============ RIGHT WING (mirror) ============ -->
+  <g id="rightWing" transform="translate(800,0) scale(-1,1)">
+    <!-- Blue glow base behind right wing -->
+    <path d="M 400 280 L 250 200 L 120 180 L 60 220 L 140 240 L 80 280 L 180 290 L 110 330 L 220 330 L 160 380 L 280 360 L 240 410 L 340 380 L 380 360 Z"
+          fill="#1e90ff" opacity="0.55" filter="url(#softGlow)"/>
+
+    <path d="M 400 270 L 240 195 L 95 175 L 175 230 L 250 250 L 395 285 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+    <path d="M 395 285 L 175 230 L 75 270 L 200 285 L 395 305 Z"
+          fill="url(#silverGradDark)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <path d="M 395 305 L 200 285 L 110 325 L 230 330 L 395 335 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+    <path d="M 395 335 L 230 330 L 165 380 L 280 360 L 395 360 Z"
+          fill="url(#silverGradDark)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <path d="M 395 360 L 280 360 L 235 410 L 335 380 L 395 385 Z"
+          fill="url(#blueGlow)" stroke="#0050d4" stroke-width="1" filter="url(#glow)"/>
+    <path d="M 395 385 L 335 380 L 305 430 L 380 410 L 395 400 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <path d="M 395 270 L 320 130 L 290 165 L 315 240 L 395 280 Z"
+          fill="url(#silverEdge)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <path d="M 320 135 L 305 200 L 290 270 L 280 340 L 295 400"
+          stroke="#5cc8ff" stroke-width="3" fill="none" opacity="0.9" filter="url(#glow)"/>
+
+    <path d="M 280 350 L 320 380 L 290 420 L 250 400 Z"
+          fill="url(#blueCore)" filter="url(#glow)"/>
+  </g>
+
+  <!-- ============ BODY / TAIL ============ -->
+  <g id="body">
+    <!-- Tail glow -->
+    <path d="M 400 420 L 350 600 L 380 680 L 400 660 L 420 680 L 450 600 Z"
+          fill="#1e90ff" opacity="0.5" filter="url(#softGlow)"/>
+
+    <!-- Tail feathers -->
+    <path d="M 400 380 L 360 500 L 345 620 L 385 580 L 400 480 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+    <path d="M 400 380 L 440 500 L 455 620 L 415 580 L 400 480 Z"
+          fill="url(#silverGradDark)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Center tail blue glow -->
+    <path d="M 400 430 L 388 560 L 400 690 L 412 560 Z"
+          fill="url(#blueCore)" filter="url(#glow)"/>
+
+    <!-- Tail tips (sharp) -->
+    <path d="M 345 620 L 360 680 L 380 640 Z"
+          fill="url(#silverEdge)" stroke="#1a1d22" stroke-width="1"/>
+    <path d="M 455 620 L 440 680 L 420 640 Z"
+          fill="url(#silverEdge)" stroke="#1a1d22" stroke-width="1"/>
+
+    <!-- Body torso -->
+    <path d="M 370 320 L 400 300 L 430 320 L 425 400 L 400 430 L 375 400 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Chest blue accent -->
+    <path d="M 388 340 L 400 330 L 412 340 L 410 395 L 400 410 L 390 395 Z"
+          fill="url(#blueCore)" opacity="0.85" filter="url(#glow)"/>
+  </g>
+
+  <!-- ============ NECK & HEAD ============ -->
+  <g id="head">
+    <!-- Neck -->
+    <path d="M 385 280 L 400 250 L 415 280 L 420 320 L 400 330 L 380 320 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Head -->
+    <path d="M 395 200 L 380 230 L 385 260 L 410 270 L 440 260 L 445 240 L 425 220 L 415 205 Z"
+          fill="url(#silverGrad)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Beak -->
+    <path d="M 440 245 L 470 250 L 445 260 Z"
+          fill="url(#silverGradDark)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Crest feathers on head -->
+    <path d="M 395 200 L 380 150 L 395 175 L 405 145 L 410 180 L 420 155 L 415 195 Z"
+          fill="url(#silverEdge)" stroke="#1a1d22" stroke-width="1.5"/>
+
+    <!-- Eye glow -->
+    <ellipse cx="425" cy="240" rx="9" ry="6" fill="url(#blueCore)" filter="url(#glow)"/>
+    <ellipse cx="425" cy="240" rx="4" ry="3" fill="#ffffff"/>
+  </g>
+</svg>
